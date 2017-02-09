@@ -7,12 +7,12 @@ using Newtonsoft.Json;
 
 namespace Cimpress.Nancy.Logging
 {
-    public class MancyLayout : LayoutSkeleton
+    public class JsonLayout : LayoutSkeleton
     {
         private readonly string _environment;
         private readonly string _hostname;
 
-        public MancyLayout(string environment)
+        public JsonLayout(string environment)
         {
             _environment = environment;
             _hostname = Dns.GetHostName();
@@ -27,7 +27,7 @@ namespace Cimpress.Nancy.Logging
 
         public override void Format(TextWriter writer, LoggingEvent loggingEvent)
         {
-            JsonSerializer.Serialize(writer, new MancyJsonLog
+            JsonSerializer.Serialize(writer, new JsonLog
             {
                 Host = _hostname,
                 Environment = _environment,
