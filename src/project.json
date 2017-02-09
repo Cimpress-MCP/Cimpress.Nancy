@@ -4,9 +4,9 @@
   "version": "1.0.0-*",
   "description": "A helper library for handling reproducible tasks such as logging and authentication for Nancy microservices",
   "copyright": "Cimpress 2017",
-  "authors": [ "cdowney", "joallard", "NancyFX Guild" ],
-  "licenseurl": "https://github.com/Cimpress-MCP/Cimpress.Nancy/blob/master/LICENSE",
-  "projecturl": "https://github.com/Cimpress-MCP/Cimpress.Nancy",
+  "authors": [ "cdowney@cimpress.com", "joallard@cimpress.com"],
+  "licenseUrl": "https://github.com/Cimpress-MCP/Cimpress.Nancy/blob/master/LICENSE",
+  "projectUrl": "https://github.com/Cimpress-MCP/Cimpress.Nancy",
   "language": "en-US",
 
   "dependencies": {
