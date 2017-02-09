@@ -24,7 +24,7 @@ namespace Cimpress.Nancy
 
         protected NancyServiceBootstrapper() : base()
         {
-            SetMancyAppender();
+            SetJsonAppender();
             _logger = CreateLogger();
         }
 
@@ -61,20 +61,20 @@ namespace Cimpress.Nancy
             base.ConfigureConventions(nancyConventions);
         }
 
-        private void SetMancyAppender()
+        private void SetJsonAppender()
         {
-            var appender = new MancyAppender(SumoLogicBaseUri)
+            var appender = new SumologicAppender(SumoLogicBaseUri)
             {
-                Layout = new MancyLayout(EnvironmentName)
+                Layout = new JsonLayout(EnvironmentName)
             };
-            var repo = LogManager.CreateRepository("Mancy");
+            var repo = LogManager.CreateRepository(ApplicationName);
             log4net.Config.BasicConfigurator.Configure(repo, appender);
         }
 
         private ILog CreateLogger()
         {
-            var appName = ApplicationName;
-            var leLogger = LogManager.GetLogger("Mancy", appName);
+            var envName = $"{ApplicationName}.{EnvironmentName}";
+            var leLogger = LogManager.GetLogger(ApplicationName, envName);
             leLogger.Info(new BaseMessage
             {
                 Message = "Service started at " + DateTime.Now

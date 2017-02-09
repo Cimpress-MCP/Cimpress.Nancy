@@ -6,12 +6,12 @@ using log4net.Core;
 
 namespace Cimpress.Nancy.Logging
 {
-    public class MancyAppender : AppenderSkeleton
+    public class SumologicAppender : AppenderSkeleton
     {
         private readonly HttpClient _httpClient;
         private readonly string _sumoLogicBaseUri;
 
-        public MancyAppender(string sumoLogicBaseUri)
+        public SumologicAppender(string sumoLogicBaseUri)
         {
             _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Add("UserAgent", "SumoLogicAppender");

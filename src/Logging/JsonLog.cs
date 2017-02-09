@@ -3,7 +3,7 @@
 namespace Cimpress.Nancy.Logging
 {
     [JsonObject]
-    public class MancyJsonLog
+    public class JsonLog
     {
         [JsonProperty]
         public string Environment { get; set; }
