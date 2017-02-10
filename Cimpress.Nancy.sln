@@ -10,7 +10,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy", "src\Cimpress.Nancy.xproj", "{106B17F1-B179-4B8B-ABD3-408CA42BF1CA}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy", "src\Cimpress.Nancy\Cimpress.Nancy.xproj", "{106B17F1-B179-4B8B-ABD3-408CA42BF1CA}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Logging", "src\Cimpress.Nancy.Logging\Cimpress.Nancy.Logging.xproj", "{4DF5A78B-E387-4D7A-B669-353BFBDDD51B}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Swagger", "src\Cimpress.Nancy.Swagger\Cimpress.Nancy.Swagger.xproj", "{113CD0B3-073B-42ED-9124-72349C064BD1}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Security", "src\Cimpress.Nancy.Security\Cimpress.Nancy.Security.xproj", "{66872FFB-1CF1-41B4-8396-C8303DA8B6DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,11 +28,26 @@ Global
 		{106B17F1-B179-4B8B-ABD3-408CA42BF1CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{106B17F1-B179-4B8B-ABD3-408CA42BF1CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{106B17F1-B179-4B8B-ABD3-408CA42BF1CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DF5A78B-E387-4D7A-B669-353BFBDDD51B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DF5A78B-E387-4D7A-B669-353BFBDDD51B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DF5A78B-E387-4D7A-B669-353BFBDDD51B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DF5A78B-E387-4D7A-B669-353BFBDDD51B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{113CD0B3-073B-42ED-9124-72349C064BD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{113CD0B3-073B-42ED-9124-72349C064BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{113CD0B3-073B-42ED-9124-72349C064BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{113CD0B3-073B-42ED-9124-72349C064BD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66872FFB-1CF1-41B4-8396-C8303DA8B6DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66872FFB-1CF1-41B4-8396-C8303DA8B6DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66872FFB-1CF1-41B4-8396-C8303DA8B6DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66872FFB-1CF1-41B4-8396-C8303DA8B6DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{106B17F1-B179-4B8B-ABD3-408CA42BF1CA} = {D2487BB9-DF16-46EB-B693-6E17106AD43D}
+		{4DF5A78B-E387-4D7A-B669-353BFBDDD51B} = {D2487BB9-DF16-46EB-B693-6E17106AD43D}
+		{113CD0B3-073B-42ED-9124-72349C064BD1} = {D2487BB9-DF16-46EB-B693-6E17106AD43D}
+		{66872FFB-1CF1-41B4-8396-C8303DA8B6DE} = {D2487BB9-DF16-46EB-B693-6E17106AD43D}
 	EndGlobalSection
 EndGlobal
