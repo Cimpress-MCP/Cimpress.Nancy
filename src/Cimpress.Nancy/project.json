@@ -29,6 +29,18 @@
       "dependencies": {
         "NETStandard.Library": "1.6.0"
       }
+    },
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ],
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.1",
+          "type": "platform"
+        }
+      }
     }
   },
   "packOptions": {
