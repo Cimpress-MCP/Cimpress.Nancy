@@ -7,7 +7,7 @@ using Nancy.Bootstrapper;
 
 namespace Cimpress.Nancy.Components
 {
-    public class ComponentManager
+    public class ComponentManager : IComponentManager
     {
         private readonly List<IBootstrapperExtender> _bootstrapperExtenders;
         private readonly List<IVersionModuleExtender> _moduleExtenders;
