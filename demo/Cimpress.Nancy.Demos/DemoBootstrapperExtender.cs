@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Cimpress.Nancy.Components;
 using Nancy;
 using Nancy.TinyIoc;
 
-namespace Cimpress.Nancy.Demo
+namespace Cimpress.Nancy.Demos
 {
     public class DemoBootstrapperExtender : IBootstrapperExtender
     {

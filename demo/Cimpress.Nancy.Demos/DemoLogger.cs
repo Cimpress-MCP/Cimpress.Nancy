@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Cimpress.Nancy.Components;
 
-namespace Cimpress.Nancy.Demo
+namespace Cimpress.Nancy.Demos
 {
     public class DemoLogger : INancyLogger
     {

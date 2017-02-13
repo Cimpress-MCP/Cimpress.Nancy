@@ -20,7 +20,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Security", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{637D3174-8D80-432D-AF7E-8D385E8BCBEE}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Demo", "demo\Cimpress.Nancy.Demo\Cimpress.Nancy.Demo.xproj", "{4ACA5CAB-84A8-4267-AE9F-92737153FE63}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Demos", "demo\Cimpress.Nancy.Demo\Cimpress.Nancy.Demos.xproj", "{4ACA5CAB-84A8-4267-AE9F-92737153FE63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
