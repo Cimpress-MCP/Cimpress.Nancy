@@ -4,7 +4,7 @@ using Cimpress.Nancy.Components;
 using Nancy;
 using Nancy.TinyIoc;
 
-namespace Cimpress.Nancy.Demos
+namespace Cimpress.Nancy.Demo
 {
     public class DemoBootstrapperExtender : IBootstrapperExtender
     {

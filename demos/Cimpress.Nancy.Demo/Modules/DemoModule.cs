@@ -2,7 +2,7 @@
 using Cimpress.Nancy.Modules;
 using Nancy;
 
-namespace Cimpress.Nancy.Demos.Modules
+namespace Cimpress.Nancy.Demo.Modules
 {
     public class DemoModule : VersionModule
     {

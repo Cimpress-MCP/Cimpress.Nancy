@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Cimpress.Nancy.Demos
+namespace Cimpress.Nancy.Demo
 {
     public class Program
     {

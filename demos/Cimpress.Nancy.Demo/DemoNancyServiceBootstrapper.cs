@@ -2,7 +2,7 @@
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
 
-namespace Cimpress.Nancy.Demos
+namespace Cimpress.Nancy.Demo
 {
     public class DemoNancyServiceBootstrapper : NancyServiceBootstrapper
     {

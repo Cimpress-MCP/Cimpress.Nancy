@@ -1,8 +1,7 @@
 ﻿using Cimpress.Nancy.Components;
 using Nancy;
-using System.Linq;
 
-namespace Cimpress.Nancy.Demos
+namespace Cimpress.Nancy.Demo
 {
     public class DemoModuleExtender : IVersionModuleExtender
     {

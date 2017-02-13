@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Cimpress.Nancy.Components;
 
-namespace Cimpress.Nancy.Demos
+namespace Cimpress.Nancy.Demo
 {
     public class DemoLogger : INancyLogger
     {
