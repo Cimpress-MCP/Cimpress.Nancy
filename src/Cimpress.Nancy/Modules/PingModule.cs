@@ -3,9 +3,9 @@ using Nancy;
 
 namespace Cimpress.Nancy.Modules
 {
-    public class PingModule : VersionModule
+    public class PingModule : NancyModule
     {
-        public PingModule(IConfiguration configuration, IComponentManager componentManager) : base(configuration.Version, "/Ping", componentManager)
+        public PingModule() : base("/Ping")
         {
             Get("/", _ => Ping(), name: "Ping");
         }

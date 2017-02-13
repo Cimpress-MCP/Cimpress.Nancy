@@ -21,10 +21,7 @@ namespace Cimpress.Nancy.Demos
             if (user == null)
             {
                 response = HttpStatusCode.Unauthorized;
-                if (!string.IsNullOrEmpty(context.Request.Headers?["Authorization"].First()))
-                {
-                    response = response.WithHeader("WWW-Authenticate", "Demo Secret Key");
-                }
+                response = response.WithHeader("WWW-Authenticate", "Demo Secret Key");
             }
 
             return response;

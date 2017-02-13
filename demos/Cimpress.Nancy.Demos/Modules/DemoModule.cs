@@ -6,9 +6,9 @@ namespace Cimpress.Nancy.Demos.Modules
 {
     public class DemoModule : VersionModule
     {
-        public DemoModule(IConfiguration configuration, IComponentManager componentManager) : base(configuration, componentManager)
+        public DemoModule(IComponentManager componentManager) : base(string.Empty, "/demo", componentManager)
         {
-            Get("/demo", _ => HttpStatusCode.OK, null, "Demo");
+            Get("/", _ => HttpStatusCode.OK, null, "Demo");
         }
     }
 }
