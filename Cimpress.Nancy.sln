@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demos", "demos", "{637D3174
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Demo", "demos\Cimpress.Nancy.Demo\Cimpress.Nancy.Demo.xproj", "{4ACA5CAB-84A8-4267-AE9F-92737153FE63}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Swagger.Demo", "demos\Cimpress.Nancy.Swagger.Demo\Cimpress.Nancy.Swagger.Demo.xproj", "{6B4F7DEC-301E-4A7D-9BA5-83FBDB6A7405}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{4ACA5CAB-84A8-4267-AE9F-92737153FE63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ACA5CAB-84A8-4267-AE9F-92737153FE63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ACA5CAB-84A8-4267-AE9F-92737153FE63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B4F7DEC-301E-4A7D-9BA5-83FBDB6A7405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B4F7DEC-301E-4A7D-9BA5-83FBDB6A7405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B4F7DEC-301E-4A7D-9BA5-83FBDB6A7405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B4F7DEC-301E-4A7D-9BA5-83FBDB6A7405}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +64,6 @@ Global
 		{113CD0B3-073B-42ED-9124-72349C064BD1} = {D2487BB9-DF16-46EB-B693-6E17106AD43D}
 		{66872FFB-1CF1-41B4-8396-C8303DA8B6DE} = {D2487BB9-DF16-46EB-B693-6E17106AD43D}
 		{4ACA5CAB-84A8-4267-AE9F-92737153FE63} = {637D3174-8D80-432D-AF7E-8D385E8BCBEE}
+		{6B4F7DEC-301E-4A7D-9BA5-83FBDB6A7405} = {637D3174-8D80-432D-AF7E-8D385E8BCBEE}
 	EndGlobalSection
 EndGlobal
