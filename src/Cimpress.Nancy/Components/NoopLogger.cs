@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Cimpress.Nancy.Components
 {
-    public class DefaultNancyLogger : INancyLogger
+    public class NoopLogger : INancyLogger
     {
         public void Configure(IDictionary<string, string> options)
         {

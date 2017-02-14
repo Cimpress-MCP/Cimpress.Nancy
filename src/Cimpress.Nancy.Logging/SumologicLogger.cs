@@ -9,7 +9,7 @@ namespace Cimpress.Nancy.Logging
 {
     public class SumologicLogger : INancyLogger
     {
-        private ILog _leLogger;
+        private ILog _logger;
 
         private string _applicationName;
         private string _environmentName;
@@ -17,9 +17,15 @@ namespace Cimpress.Nancy.Logging
 
         public void Configure(IDictionary<string, string> options)
         {
-            _applicationName = options["ApplicationName"];
-            _environmentName = options["EnvironmentName"];
-            _sumoLogicBaseUri = options["LoggingBaseUri"];
+            var result = options.TryGetValue("ApplicationName", out _applicationName);
+            result &= options.TryGetValue("EnvironmentName", out _environmentName);
+            result &= options.TryGetValue("LoggingBaseUri", out _sumoLogicBaseUri);
+
+            if (!result)
+            {
+                Console.WriteLine($"Error: {"Missing option(s) to configure SumologicLogger"}");
+                return;
+            }
 
             SetJsonAppender();
 
@@ -29,22 +35,22 @@ namespace Cimpress.Nancy.Logging
             {
                 Message = "Service started at " + DateTime.Now
             });
-            _leLogger = leLogger;
+            _logger = leLogger;
         }
 
         public void Debug(object data)
         {
-            _leLogger?.Debug(data);
+            _logger?.Debug(data);
         }
 
         public void Info(object data)
         {
-            _leLogger?.Info(data);
+            _logger?.Info(data);
         }
 
         public void Error(object data)
         {
-            _leLogger?.Error(data);
+            _logger?.Error(data);
         }
         private void SetJsonAppender()
         {

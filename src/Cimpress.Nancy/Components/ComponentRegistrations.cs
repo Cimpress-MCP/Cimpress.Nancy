@@ -14,7 +14,7 @@ namespace Cimpress.Nancy.Components
             RegisterAll<IBootstrapperExtender>();
             RegisterAll<IVersionModuleExtender>();
             RegisterWithDefault<IComponentManager>(typeof(ComponentManager));
-            RegisterWithDefault<INancyLogger>(typeof(DefaultNancyLogger));
+            RegisterWithDefault<INancyLogger>(typeof(NoopLogger));
         }
     }
 }
