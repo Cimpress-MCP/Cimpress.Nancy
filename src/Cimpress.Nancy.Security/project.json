@@ -12,6 +12,7 @@
   "dependencies": {
     "Microsoft.IdentityModel.Tokens": "5.1.2",
     "System.IdentityModel.Tokens.Jwt": "5.1.2",
+    "Nancy": "2.0.0-clinteastwood",
     "Cimpress.Nancy": {
       "target": "project"
     }
@@ -30,6 +31,18 @@
       "imports": "dnxcore50",
       "dependencies": {
         "NETStandard.Library": "1.6.0"
+      }
+    },
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ],
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.1",
+          "type": "platform"
+        }
       }
     }
   },
