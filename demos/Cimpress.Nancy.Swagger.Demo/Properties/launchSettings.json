@@ -10,14 +10,16 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": false,
+      "launchBrowser": true,
+      "launchUrl": "/swagger-ui/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Cimpress.Nancy.Demo": {
       "commandName": "Project",
-      "launchBrowser": false,
+      "launchBrowser": true,
+      "launchUrl": "/swagger-ui/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
