@@ -9,6 +9,10 @@ using Nancy.Swagger.Services.RouteUtils;
 
 namespace Cimpress.Nancy.Swagger.Demo.Modules
 {
+    /// <summary>
+    /// See Nancy.Swagger for information on how to document your routes:
+    /// https://github.com/yahehe/Nancy.Swagger
+    /// </summary>
     public class DemoMetadataModule : SwaggerMetadataModule
     {
         public DemoMetadataModule(ISwaggerModelCatalog modelCatalog, ISwaggerTagCatalog tagCatalog) : base(modelCatalog, tagCatalog)

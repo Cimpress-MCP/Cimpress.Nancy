@@ -12,10 +12,12 @@
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
-    "Cimpress.Nancy": "1.0.0",
     "Microsoft.AspNetCore.Owin": "1.1.0",
     "log4net": "2.0.7",
-    "Nancy": "2.0.0-clinteastwood"
+    "Nancy": "2.0.0-clinteastwood",
+    "Cimpress.Nancy": {
+      "target": "project"
+    }
   },
 
   "tools": {
