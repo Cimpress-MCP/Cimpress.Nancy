@@ -1,4 +1,5 @@
 ﻿using Cimpress.Nancy.Components;
+using Cimpress.Nancy.Config;
 using Nancy;
 
 namespace Cimpress.Nancy.Modules
