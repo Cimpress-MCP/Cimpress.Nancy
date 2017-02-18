@@ -37,7 +37,10 @@ namespace Cimpress.Nancy.Demo
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseOwin(x => x.UseNancy());
+            app.UseOwin(x => x.UseNancy(new NancyOptions
+            {
+                Bootstrapper = new DemoNancyServiceBootstrapper(Configuration)
+            }));
         }
     }
 }

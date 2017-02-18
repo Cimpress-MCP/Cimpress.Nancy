@@ -4,6 +4,7 @@ using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
 using Cimpress.Nancy.Swagger;
 using Nancy.Swagger.Services;
+using Cimpress.Nancy.Config;
 
 namespace Cimpress.Nancy.Swagger.Demo
 {

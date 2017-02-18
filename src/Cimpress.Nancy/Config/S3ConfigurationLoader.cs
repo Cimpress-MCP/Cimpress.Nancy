@@ -2,17 +2,39 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Amazon;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Newtonsoft.Json;
 
-namespace Cimpress.Nancy
+namespace Cimpress.Nancy.Config
 {
-    public class ConfigurationLoader : IConfigurationLoader
+    public class S3ConfigurationLoader : IConfigurationLoader
     {
-        public T LoadConfiguration<T>(T configuration) where T : IConfiguration
+        private readonly string _s3FileName;
+        private readonly string _s3BucketName;
+        private readonly RegionEndpoint _region;
+
+        public S3ConfigurationLoader(string s3FileName, string s3BucketName, RegionEndpoint region)
         {
-            configuration.Version = GetVersion();
+            _s3FileName = s3FileName;
+            _s3BucketName = s3BucketName;
+            _region = region;
+        }
+
+        public async Task<T> LoadConfiguration<T>() where T : IConfiguration
+        {
+            var configuration = await GetConfigurationObject<T>();
+
+            if (configuration == null)
+            {
+                return default(T);
+            }
+
+            if (string.IsNullOrEmpty(configuration.Version))
+            {
+                configuration.Version = GetVersion();
+            }
             return configuration;
         }
 
@@ -21,9 +43,14 @@ namespace Cimpress.Nancy
             return "v0";
         }
 
-        public async Task<T> GetConfigurationObject<T>(string configFile, string s3FileName, string s3BucketName) where T : IConfiguration
+        private async Task<T> GetConfigurationObject<T>() where T : IConfiguration
         {
-            var configString = File.Exists(configFile) ? File.ReadAllText(configFile) : await RetrieveConfigFromS3(s3FileName, s3BucketName);
+            var configString = await RetrieveConfigFromS3(_s3FileName, _s3BucketName);
+
+            if (string.IsNullOrEmpty(configString))
+            {
+                return default(T);
+            }
 
             var config = JsonConvert.DeserializeObject<T>(configString);
 
@@ -36,13 +63,12 @@ namespace Cimpress.Nancy
 
         private async Task<string> RetrieveConfigFromS3(string s3FileName, string s3BucketName)
         {
-            var region = Amazon.RegionEndpoint.EUWest1;
             if (!string.IsNullOrEmpty(s3FileName))
             {
                 try
                 {
 
-                    using (AmazonS3Client client = new AmazonS3Client(region))
+                    using (AmazonS3Client client = new AmazonS3Client(_region))
                     {
                         var objectRequest = new GetObjectRequest
                         {

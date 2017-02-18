@@ -1,4 +1,5 @@
-﻿using Nancy;
+﻿using Cimpress.Nancy.Config;
+using Nancy;
 
 namespace Cimpress.Nancy.Swagger
 {

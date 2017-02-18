@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace Cimpress.Nancy
+namespace Cimpress.Nancy.Config
 {
     public interface IConfiguration
     {
         string Version { get; set; }
-        IDictionary<string, string> OptionalParameters { get; set; }
+        Dictionary<string, string> OptionalParameters { get; set; }
     }
 }
