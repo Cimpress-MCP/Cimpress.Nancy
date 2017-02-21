@@ -11,6 +11,9 @@
       "version": "1.0.1"
     }
   },
+  "tools": {
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+  },
   "runtimeOptions": {
     "configProperties": {
       "System.GC.Server": true
