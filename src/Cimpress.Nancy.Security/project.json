@@ -5,8 +5,6 @@
   "description": "An additional library to handle security for Cimpress.Nancy",
   "copyright": "Cimpress 2017",
   "authors": [ "cdowney@cimpress.com" ],
-  "licenseUrl": "https://github.com/Cimpress-MCP/Cimpress.Nancy/blob/master/LICENSE",
-  "projectUrl": "https://github.com/Cimpress-MCP/Cimpress.Nancy",
   "language": "en-US",
 
   "dependencies": {
@@ -47,6 +45,8 @@
     }
   },
   "packOptions": {
+    "licenseUrl": "https://github.com/Cimpress-MCP/Cimpress.Nancy/blob/master/LICENSE",
+    "projectUrl": "https://github.com/Cimpress-MCP/Cimpress.Nancy",
     "tags": [ "nancy", "cimpress", "auth0", "cimpress.nancy", "cimpress.nancy.security" ],
     "owners": [ "Cimpress" ]
   }
