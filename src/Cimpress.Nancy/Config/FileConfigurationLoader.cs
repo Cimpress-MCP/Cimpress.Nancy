@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Amazon.S3;
-using Amazon.S3.Model;
 using Newtonsoft.Json;
 
 namespace Cimpress.Nancy.Config

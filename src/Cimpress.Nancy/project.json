@@ -10,10 +10,9 @@
   "language": "en-US",
 
   "dependencies": {
-    "AWSSDK.S3": "3.3.5.3",
     "Nancy": "2.0.0-clinteastwood",
     "Newtonsoft.Json": "9.0.1"
-  },
+   },
 
   "frameworks": {
     "net452": {
@@ -27,7 +26,8 @@
     "netstandard1.6": {
       "imports": "dnxcore50",
       "dependencies": {
-        "NETStandard.Library": "1.6.0"
+        "NETStandard.Library": "1.6.0",
+        "System.Net.Requests": "4.0.11"
       }
     },
     "netcoreapp1.0": {
