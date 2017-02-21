@@ -5,10 +5,7 @@
   "description": "A helper library for handling reproducible tasks such as logging and authentication for Nancy microservices",
   "copyright": "Cimpress 2017",
   "authors": [ "cdowney@cimpress.com" ],
-  "licenseUrl": "https://github.com/Cimpress-MCP/Cimpress.Nancy/blob/master/LICENSE",
-  "projectUrl": "https://github.com/Cimpress-MCP/Cimpress.Nancy",
   "language": "en-US",
-
   "dependencies": {
     "Nancy": "2.0.0-clinteastwood",
     "Newtonsoft.Json": "9.0.1"
@@ -44,6 +41,8 @@
     }
   },
   "packOptions": {
+    "licenseUrl": "https://github.com/Cimpress-MCP/Cimpress.Nancy/blob/master/LICENSE",
+    "projectUrl": "https://github.com/Cimpress-MCP/Cimpress.Nancy",
     "tags": [ "nancy", "cimpress", "cimpress.nancy", "microservice" ],
     "owners": [ "Cimpress" ]
   }
