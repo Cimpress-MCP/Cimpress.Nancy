@@ -13,7 +13,7 @@ namespace Cimpress.Nancy.Security
 {
     public class OAuth2Validator : IAuthValidator
     {
-        private readonly TokenValidationParameters _auth0TokenValidationParameters;
+        private TokenValidationParameters _auth0TokenValidationParameters;
         private readonly INancyLogger _log;
         private const string Name = "name";
         private const string Bearer = "Bearer ";
@@ -23,15 +23,6 @@ namespace Cimpress.Nancy.Security
 
         public OAuth2Validator(INancyLogger log)
         {
-            var key = Base64Regex.IsMatch(OAuthSecretKey) ? DecodeKey(OAuthSecretKey) : Encoding.ASCII.GetBytes(OAuthSecretKey);
-            var auth0SigningKey = new SymmetricSecurityKey(key);
-
-            _auth0TokenValidationParameters = new TokenValidationParameters()
-            {
-                ValidIssuer = OAuth2Issuer,
-                ValidAudience = OAuth2ClientId,
-                IssuerSigningKey = auth0SigningKey
-            };
             _log = log;
         }
 
@@ -48,6 +39,19 @@ namespace Cimpress.Nancy.Security
         {
             var convertedString = auth0SecretKey.Replace('-', '+').Replace('_', '/');
             return Convert.FromBase64String(convertedString);
+        }
+
+        private void ConfigureTokenValidationParameters()
+        {
+            var key = Base64Regex.IsMatch(OAuthSecretKey) ? DecodeKey(OAuthSecretKey) : Encoding.ASCII.GetBytes(OAuthSecretKey);
+            var auth0SigningKey = new SymmetricSecurityKey(key);
+
+            _auth0TokenValidationParameters = new TokenValidationParameters()
+            {
+                ValidIssuer = OAuth2Issuer,
+                ValidAudience = OAuth2ClientId,
+                IssuerSigningKey = auth0SigningKey
+            };
         }
 
         public UserIdentity GetUserFromContext(NancyContext ctx)
@@ -87,6 +91,11 @@ namespace Cimpress.Nancy.Security
             {
                 try
                 {
+                    if (_auth0TokenValidationParameters == null)
+                    {
+                        ConfigureTokenValidationParameters();
+                    }
+
                     SecurityToken validatedToken;
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var validatedClaims = tokenHandler.ValidateToken(tokenString, _auth0TokenValidationParameters, out validatedToken);
