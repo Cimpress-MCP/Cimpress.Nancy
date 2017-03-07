@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Cimpress.Nancy": "1.0.0-*"
+  },
+
+  "frameworks": {
+    "net452": {
+      "frameworkAssemblies": {
+        "System.Net": "",
+        "System.Net.Http": "",
+        "System.Text.RegularExpressions": "",
+        "System.Threading.Tasks": ""
+      }
+    },
+    "netstandard1.6": {
+      "imports": "dnxcore50",
+      "dependencies": {
+        "NETStandard.Library": "1.6.0"
+      }
+    },
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ],
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.1",
+          "type": "platform"
+        }
+      }
+    }
+  }
+}
