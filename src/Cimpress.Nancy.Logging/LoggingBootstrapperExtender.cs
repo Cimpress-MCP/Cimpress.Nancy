@@ -89,7 +89,7 @@ namespace Cimpress.Nancy.Logging
             var bodyString = new StreamReader(request.Body).ReadToEnd();
             request.Body.Position = 0;
 
-            var isBodyJson = string.Equals(request.Headers.ContentType, "application/json", StringComparison.OrdinalIgnoreCase);
+            var isBodyJson = string.Equals(request.Headers.ContentType ?? string.Empty, "application/json", StringComparison.OrdinalIgnoreCase);
 
             var bodyObject = new object();
             try
