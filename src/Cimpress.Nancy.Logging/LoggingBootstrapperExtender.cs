@@ -62,6 +62,8 @@ namespace Cimpress.Nancy.Logging
             logData["Host"] = Environment.MachineName;
             logData["Body"] = bodyObject;
             logData["CallDuration"] = duration;
+            logData["StatusCode"] = response.StatusCode;
+            logData["ResponseReason"] = response.ReasonPhrase;
 
             _logger.Info(new BaseMessage
             {
