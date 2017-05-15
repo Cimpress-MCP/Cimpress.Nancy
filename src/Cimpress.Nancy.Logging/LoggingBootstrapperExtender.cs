@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Cimpress.Nancy.Components;
+using Cimpress.Nancy.Config;
 using log4net;
 using Nancy;
 using Nancy.TinyIoc;
@@ -13,27 +14,29 @@ namespace Cimpress.Nancy.Logging
 {
     public class LoggingBootstrapperExtender : IBootstrapperExtender
     {
+        public static readonly string BodySizeLimitConfigKey = "LoggingBodySizeLimit";
+
         private const string StartTimeString = "StartTime";
         private const string CorrelationIdString = "CorrelationId";
 
         private INancyLogger _logger;
-        private NancyServiceBootstrapper _bootstrapper;
 
-        public LoggingBootstrapperExtender(INancyLogger logger)
+        private int _loggedBodySizeLimit = -1;
+
+        public LoggingBootstrapperExtender(INancyLogger logger, IConfiguration config)
         {
             Priority = 100;
             _logger = logger;
+
+            string loggedBodySizeLimit;
+            if(config.OptionalParameters.TryGetValue(BodySizeLimitConfigKey, out loggedBodySizeLimit))
+            {
+                int.TryParse(loggedBodySizeLimit, out _loggedBodySizeLimit);
+            }
         }
 
         public void Initialize(NancyServiceBootstrapper bootstrapper, TinyIoCContainer container)
         {
-            _bootstrapper = bootstrapper;
-            _logger.Configure(new Dictionary<string, string>
-            {
-                { "ApplicationName", _bootstrapper.ApplicationName },
-                { "EnvironmentName", _bootstrapper.EnvironmentName },
-                { "LoggingBaseUri", _bootstrapper.SumoLogicBaseUri }
-            });
         }
 
         public void OnAfterRequest(NancyContext context, IDictionary<string, object> logData)
@@ -58,6 +61,12 @@ namespace Cimpress.Nancy.Logging
             var responseBody = new StreamReader(stream).ReadToEnd();
             var responseIsJson = response.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(responseBody);
             var bodyObject = responseIsJson ? JsonConvert.DeserializeObject(responseBody) : responseBody;
+
+            //If the body is too large, just log the first x characters (and don't return the JSON object if applicable) 
+            if(_loggedBodySizeLimit > -1 && responseBody.Length > _loggedBodySizeLimit)
+            {
+                bodyObject = responseBody.Substring(0, _loggedBodySizeLimit);
+            }
 
             logData["Host"] = Environment.MachineName;
             logData["Body"] = bodyObject;
@@ -103,6 +112,13 @@ namespace Cimpress.Nancy.Logging
             }
             catch (Exception)
             {
+                isBodyJson = false;
+            }
+
+            //If the body is too large, just log the first x characters (and don't return the JSON object if applicable) 
+            if (_loggedBodySizeLimit > -1 && bodyString.Length > _loggedBodySizeLimit)
+            {
+                bodyString = bodyString.Substring(0, _loggedBodySizeLimit);
                 isBodyJson = false;
             }
 
