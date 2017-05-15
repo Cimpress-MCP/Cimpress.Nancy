@@ -1,32 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D2487BB9-DF16-46EB-B693-6E17106AD43D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DD31DBC7-28B8-4283-B82B-0831229ADFA6}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy", "src\Cimpress.Nancy\Cimpress.Nancy.xproj", "{106B17F1-B179-4B8B-ABD3-408CA42BF1CA}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Logging", "src\Cimpress.Nancy.Logging\Cimpress.Nancy.Logging.xproj", "{4DF5A78B-E387-4D7A-B669-353BFBDDD51B}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Swagger", "src\Cimpress.Nancy.Swagger\Cimpress.Nancy.Swagger.xproj", "{113CD0B3-073B-42ED-9124-72349C064BD1}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Security", "src\Cimpress.Nancy.Security\Cimpress.Nancy.Security.xproj", "{66872FFB-1CF1-41B4-8396-C8303DA8B6DE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demos", "demos", "{637D3174-8D80-432D-AF7E-8D385E8BCBEE}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Demo", "demos\Cimpress.Nancy.Demo\Cimpress.Nancy.Demo.xproj", "{4ACA5CAB-84A8-4267-AE9F-92737153FE63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cimpress.Nancy", "src\Cimpress.Nancy\Cimpress.Nancy.csproj", "{106B17F1-B179-4B8B-ABD3-408CA42BF1CA}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Swagger.Demo", "demos\Cimpress.Nancy.Swagger.Demo\Cimpress.Nancy.Swagger.Demo.xproj", "{6B4F7DEC-301E-4A7D-9BA5-83FBDB6A7405}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cimpress.Nancy.Logging", "src\Cimpress.Nancy.Logging\Cimpress.Nancy.Logging.csproj", "{4DF5A78B-E387-4D7A-B669-353BFBDDD51B}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Deployment.DotnetCoreBeanstalk.Demo", "demos\Cimpress.Nancy.Deployment.DotnetCoreBeanstalk.Demo\Cimpress.Nancy.Deployment.DotnetCoreBeanstalk.Demo.xproj", "{15C5C804-983B-4D1B-ACA6-2937EE9C21B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cimpress.Nancy.Swagger", "src\Cimpress.Nancy.Swagger\Cimpress.Nancy.Swagger.csproj", "{113CD0B3-073B-42ED-9124-72349C064BD1}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cimpress.Nancy.Security.Demo", "demos\Cimpress.Nancy.Security.Demo\Cimpress.Nancy.Security.Demo.xproj", "{45F8838F-F941-41C6-898B-F73C33874CCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cimpress.Nancy.Security", "src\Cimpress.Nancy.Security\Cimpress.Nancy.Security.csproj", "{66872FFB-1CF1-41B4-8396-C8303DA8B6DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cimpress.Nancy.Demo", "demos\Cimpress.Nancy.Demo\Cimpress.Nancy.Demo.csproj", "{4ACA5CAB-84A8-4267-AE9F-92737153FE63}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cimpress.Nancy.Swagger.Demo", "demos\Cimpress.Nancy.Swagger.Demo\Cimpress.Nancy.Swagger.Demo.csproj", "{6B4F7DEC-301E-4A7D-9BA5-83FBDB6A7405}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cimpress.Nancy.Deployment.DotnetCoreBeanstalk.Demo", "demos\Cimpress.Nancy.Deployment.DotnetCoreBeanstalk.Demo\Cimpress.Nancy.Deployment.DotnetCoreBeanstalk.Demo.csproj", "{15C5C804-983B-4D1B-ACA6-2937EE9C21B3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cimpress.Nancy.Security.Demo", "demos\Cimpress.Nancy.Security.Demo\Cimpress.Nancy.Security.Demo.csproj", "{45F8838F-F941-41C6-898B-F73C33874CCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
