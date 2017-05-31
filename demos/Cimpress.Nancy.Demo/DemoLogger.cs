@@ -6,10 +6,6 @@ namespace Cimpress.Nancy.Demo
 {
     public class DemoLogger : INancyLogger
     {
-        public void Configure(IDictionary<string, string> options)
-        {
-
-        }
 
         public void Debug(object data)
         {

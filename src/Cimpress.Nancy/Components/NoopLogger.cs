@@ -7,9 +7,6 @@ namespace Cimpress.Nancy.Components
 {
     public class NoopLogger : INancyLogger
     {
-        public void Configure(IDictionary<string, string> options)
-        {
-        }
 
         public void Debug(object data)
         {

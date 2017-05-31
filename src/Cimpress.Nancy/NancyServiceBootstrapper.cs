@@ -21,21 +21,6 @@ namespace Cimpress.Nancy
         {
         }
 
-        public virtual string SumoLogicBaseUri
-        {
-            get { return string.Empty; }
-        }
-
-        public virtual string ApplicationName
-        {
-            get { return string.Empty; }
-        }
-
-        public virtual string EnvironmentName
-        {
-            get { return string.Empty; }
-        }
-
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
             _componentManager = container.Resolve<IComponentManager>();

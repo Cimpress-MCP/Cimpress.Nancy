@@ -42,7 +42,7 @@ namespace Cimpress.Nancy.Logging
                     }
                 }
 
-                _httpClient.GetAsync(_sumoLogicBaseUri + body);
+                _httpClient.PostAsync(_sumoLogicBaseUri, new StringContent(body));
             });
         }
     }

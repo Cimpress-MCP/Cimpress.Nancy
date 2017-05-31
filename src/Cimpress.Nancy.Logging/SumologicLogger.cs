@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cimpress.Nancy.Components;
+using Cimpress.Nancy.Config;
 using log4net;
 
 namespace Cimpress.Nancy.Logging
 {
     public class SumologicLogger : INancyLogger
     {
+        public static readonly string ApplicationNameConfigKey = "ApplicationName";
+        public static readonly string EnvironmentNameConfigKey = "EnvironmentName";
+        public static readonly string SumologicBaseUriConfigKey = "SumologicBaseUri";
+
         private ILog _logger;
 
         private string _applicationName;
         private string _environmentName;
         private string _sumoLogicBaseUri;
 
-        public void Configure(IDictionary<string, string> options)
+        public SumologicLogger(IConfiguration configuration)
         {
-            var result = options.TryGetValue("ApplicationName", out _applicationName);
-            result &= options.TryGetValue("EnvironmentName", out _environmentName);
-            result &= options.TryGetValue("LoggingBaseUri", out _sumoLogicBaseUri);
+            var result = configuration.OptionalParameters.TryGetValue(ApplicationNameConfigKey, out _applicationName);
+            result &= configuration.OptionalParameters.TryGetValue(EnvironmentNameConfigKey, out _environmentName);
+            result &= configuration.OptionalParameters.TryGetValue(SumologicBaseUriConfigKey, out _sumoLogicBaseUri);
 
             if (!result)
             {
@@ -30,12 +35,12 @@ namespace Cimpress.Nancy.Logging
             SetJsonAppender();
 
             var envName = $"{_applicationName}.{_environmentName}";
-            var leLogger = LogManager.GetLogger(_applicationName, envName);
-            leLogger.Info(new BaseMessage
+            var logger = LogManager.GetLogger(_applicationName, envName);
+            logger.Info(new BaseMessage
             {
                 Message = "Service started at " + DateTime.Now
             });
-            _logger = leLogger;
+            _logger = logger;
         }
 
         public void Debug(object data)
