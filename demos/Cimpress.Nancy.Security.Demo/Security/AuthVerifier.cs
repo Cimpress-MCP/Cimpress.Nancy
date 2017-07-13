@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cimpress.Nancy.Config;
+using Cimpress.Nancy.Security.AuthenticationHeaders;
 
 namespace Cimpress.Nancy.Security.Demo.Security
 {
@@ -10,9 +11,9 @@ namespace Cimpress.Nancy.Security.Demo.Security
     {
         public AuthVerifier(IConfiguration config)
         {
-            AuthHeader = config.OptionalParameters["OAuth2ClientId"];
+            AuthHeader = new SimpleAuthenticationHeader(config.OptionalParameters["OAuth2ClientId"]);
         }
 
-        public override string AuthHeader { get; }
+        public override IAuthenticationHeader AuthHeader { get; }
     }
 }

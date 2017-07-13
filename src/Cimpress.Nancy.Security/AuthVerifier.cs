@@ -1,3 +1,4 @@
+using Cimpress.Nancy.Security.AuthenticationHeaders;
 using Nancy;
 
 namespace Cimpress.Nancy.Security
@@ -15,9 +16,9 @@ namespace Cimpress.Nancy.Security
             if (user == null || !user.Valid)
             {
                 response = HttpStatusCode.Unauthorized;
-                if (!string.IsNullOrEmpty(AuthHeader))
+                if (AuthHeader != null)
                 {
-                    response = response.WithHeader("WWW-Authenticate", AuthHeader);
+                    AuthHeader.AddHeader(response, context.Request);
                 }
             }
 
@@ -32,6 +33,6 @@ namespace Cimpress.Nancy.Security
             }
         }
 
-        public virtual string AuthHeader => string.Empty;
+        public virtual IAuthenticationHeader AuthHeader => null;
     }
 }
