@@ -16,7 +16,6 @@ namespace Cimpress.Nancy.Logging
     {
         public static readonly string BodySizeLimitConfigKey = "LoggingBodySizeLimit";
 
-        private const string StartTimeString = "StartTime";
         private const string CorrelationIdString = "CorrelationId";
 
         private INancyLogger _logger;
@@ -43,10 +42,14 @@ namespace Cimpress.Nancy.Logging
         {
             var request = context.Request;
             var response = context.Response;
-            var duration = int.MinValue;
-            if (context.Items.ContainsKey(StartTimeString))
+
+            if (context.Items.ContainsKey(NancyServiceBootstrapper.StartTimeString))
             {
-                duration = (int)DateTime.UtcNow.Subtract((DateTime)context.Items[StartTimeString]).TotalMilliseconds;
+                var startTime = (DateTime)context.Items[NancyServiceBootstrapper.StartTimeString];
+                var endTime = DateTime.UtcNow;
+                logData[NancyServiceBootstrapper.StartTimeString] = startTime;
+                logData[NancyServiceBootstrapper.EndTimeString] = endTime;
+                logData["CallDuration"] = (int)endTime.Subtract(startTime).TotalMilliseconds;
             }
 
             var correlationId = string.Empty;
@@ -70,7 +73,6 @@ namespace Cimpress.Nancy.Logging
 
             logData["Host"] = Environment.MachineName;
             logData["Body"] = bodyObject;
-            logData["CallDuration"] = duration;
             logData["StatusCode"] = response.StatusCode;
             logData["ResponseReason"] = response.ReasonPhrase;
 
@@ -86,10 +88,6 @@ namespace Cimpress.Nancy.Logging
 
         public Response OnBeforeRequest(NancyContext context, IDictionary<string, object> logData)
         {
-
-            var startTime = DateTime.UtcNow;
-            context.Items.Add(StartTimeString, startTime);
-
             var correlationId = GetCorrelationId(context);
             context.Items.Add(CorrelationIdString, correlationId);
 
@@ -139,10 +137,13 @@ namespace Cimpress.Nancy.Logging
 
         public void OnError(NancyContext context, Exception ex, Response newResponse, IDictionary<string, object> logData)
         {
-            var duration = int.MinValue;
-            if (context.Items.ContainsKey(StartTimeString))
+            if (context.Items.ContainsKey(NancyServiceBootstrapper.StartTimeString))
             {
-                duration = (int)DateTime.UtcNow.Subtract((DateTime)context.Items[StartTimeString]).TotalMilliseconds;
+                var startTime = (DateTime)context.Items[NancyServiceBootstrapper.StartTimeString];
+                var endTime = DateTime.UtcNow;
+                logData[NancyServiceBootstrapper.StartTimeString] = startTime;
+                logData[NancyServiceBootstrapper.EndTimeString] = endTime;
+                logData["CallDuration"] = (int)endTime.Subtract(startTime).TotalMilliseconds;
             }
 
             var correlationId = string.Empty;
@@ -153,7 +154,6 @@ namespace Cimpress.Nancy.Logging
 
             logData["Host"] = Environment.MachineName;
             logData["StackTrace"] = ex.ToString();
-            logData["CallDuration"] = duration;
 
             _logger.Error(new BaseMessage
             {

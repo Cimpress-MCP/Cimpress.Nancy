@@ -15,6 +15,9 @@ namespace Cimpress.Nancy
 {
     public abstract class NancyServiceBootstrapper : DefaultNancyBootstrapper
     {
+        public const string StartTimeString = "StartTime";
+        public const string EndTimeString = "EndTime";
+
         private IComponentManager _componentManager;
 
         protected NancyServiceBootstrapper() : base()
@@ -52,6 +55,7 @@ namespace Cimpress.Nancy
         private Response OnBeforeRequest(NancyContext ctx)
         {
             IDictionary<string, object> logData = new Dictionary<string, object>();
+            ctx.Items.Add(StartTimeString, DateTime.UtcNow);
             Response result = null;
             foreach (var extender in _componentManager.GetBootstrapperExtenders())
             {
