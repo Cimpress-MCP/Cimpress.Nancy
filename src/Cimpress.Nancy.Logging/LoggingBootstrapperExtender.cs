@@ -120,9 +120,13 @@ namespace Cimpress.Nancy.Logging
                 isBodyJson = false;
             }
 
+            var query = (IDictionary<string, object>)context.Request.Query;
+            var queryLog = query.Select(kv => new KeyValuePair<string, string>(kv.Key, kv.Value.ToString()));
+
             logData["Host"] = Environment.MachineName;
             logData["Form"] = JsonConvert.DeserializeObject(formString);
             logData["Headers"] = request.Headers;
+            logData["Query"] = queryLog;
             logData["Body"] = isBodyJson ? bodyObject : bodyString;
             logData["Method"] = request.Method;
 

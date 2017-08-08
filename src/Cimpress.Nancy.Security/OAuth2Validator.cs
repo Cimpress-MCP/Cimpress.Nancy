@@ -59,11 +59,13 @@ namespace Cimpress.Nancy.Security
             string jwt = string.Empty;
             try
             {
-                jwt = ctx.Request.Headers["Authorization"].FirstOrDefault() ?? string.Empty;
+                jwt = ctx.Request.Headers.Authorization ?? string.Empty;
                 if (jwt.StartsWith(Bearer))
                 {
                     jwt = jwt.Substring(Bearer.Length);
                 }
+                //The Authorization header value should be removed, so it won't be logged
+                ctx.Request.Headers.Authorization = "...obscured...";
             }
             catch (Exception e)
             {
