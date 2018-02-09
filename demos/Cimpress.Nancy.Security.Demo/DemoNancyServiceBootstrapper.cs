@@ -19,7 +19,9 @@ namespace Cimpress.Nancy.Security.Demo
             {
                 ["OAuth2Issuer"] = "[Pass root url of issuer here]",
                 ["OAuth2SecretKey"] = "[Pass application's secret key here]",
-                ["OAuth2ClientId"] = "[Pass application's client id here]"
+                ["OAuth2ClientId"] = "[Pass application's client id here]",
+                ["OAuth2JwksLocation"] = "[Pass auth0 tenant's jwks url here]",
+                ["OAuth2JwksAudience"] = "[Pass auth0 tenant's audience here]"
             };
             container.Register(configuration);
             base.ApplicationStartup(container, pipelines);
