@@ -14,10 +14,14 @@ namespace Cimpress.Nancy.Security.Demo.Security
             OAuth2Issuer = config.OptionalParameters["OAuth2Issuer"];
             OAuthSecretKey = config.OptionalParameters["OAuth2SecretKey"];
             OAuth2ClientId = config.OptionalParameters["OAuth2ClientId"];
+            OAuth2JwksLocation = config.OptionalParameters["OAuth2JwksLocation"];
+            OAuth2JwksAudience = config.OptionalParameters["OAuth2JwksAudience"];
         }
 
         public override string OAuth2Issuer { get; }
         public override string OAuthSecretKey { get; }
         public override string OAuth2ClientId { get; }
+        public override string OAuth2JwksLocation { get; }
+        public override string OAuth2JwksAudience { get; }
     }
 }
