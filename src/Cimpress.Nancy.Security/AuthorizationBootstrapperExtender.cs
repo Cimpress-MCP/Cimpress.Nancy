@@ -30,7 +30,13 @@ namespace Cimpress.Nancy.Security
         {
             var currentUser = _authValidator.GetUserFromContext(context);
             context.CurrentUser = currentUser;
-            logData["User"] = currentUser;
+            logData["User"] = new
+            {
+                UserId = currentUser.GetUserId(),
+                Name = currentUser.GetUserName(),
+                ExpirationTime = currentUser.GetExpirationTime(),
+                Valid = currentUser.IsValid()
+            };
             return null;
         }
 
