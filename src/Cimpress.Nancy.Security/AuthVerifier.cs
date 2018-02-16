@@ -9,11 +9,11 @@ namespace Cimpress.Nancy.Security
         {
         }
 
-        public Response HandleBefore(NancyContext context)
+        public virtual Response HandleBefore(NancyContext context)
         {
             Response response = null;
-            var user = context.CurrentUser as UserIdentity;
-            if (user == null || !user.Valid)
+            var user = context.CurrentUser;
+            if (user == null || !user.IsValid())
             {
                 response = HttpStatusCode.Unauthorized;
                 if (AuthHeader != null)
@@ -25,7 +25,7 @@ namespace Cimpress.Nancy.Security
             return response;
         }
 
-        public void HandleAfter(NancyContext context)
+        public virtual void HandleAfter(NancyContext context)
         {
             if (context.Response.StatusCode == HttpStatusCode.Unauthorized)
             {

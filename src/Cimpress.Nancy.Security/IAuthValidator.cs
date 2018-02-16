@@ -1,9 +1,10 @@
-﻿using Nancy;
+﻿using System.Security.Claims;
+using Nancy;
 
 namespace Cimpress.Nancy.Security
 {
     public interface IAuthValidator
     {
-        UserIdentity GetUserFromContext(NancyContext context);
+        ClaimsPrincipal GetUserFromContext(NancyContext context);
     }
 }

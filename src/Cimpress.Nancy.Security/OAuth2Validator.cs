@@ -20,9 +20,8 @@ namespace Cimpress.Nancy.Security
         private TokenValidationParameters _secretKeyValidationParameters;
         private TokenValidationParameters _jwksKeyValidationParameters;
         private readonly INancyLogger _log;
-        private const string Name = "name";
         private const string Bearer = "Bearer ";
-        private readonly IDictionary<string, UserIdentity> _userCache = new Dictionary<string, UserIdentity>();
+        private readonly IDictionary<string, ClaimsPrincipal> _userCache = new Dictionary<string, ClaimsPrincipal>();
 
         private static readonly Regex Base64Regex = new Regex("^(?:[A-Za-z0-9-_]{4})*(?:[A-Za-z0-9-_]{2}==|[A-Za-z0-9-_]{3}=)?$");
 
@@ -104,7 +103,7 @@ namespace Cimpress.Nancy.Security
             };
         }
 
-        public UserIdentity GetUserFromContext(NancyContext ctx)
+        public ClaimsPrincipal GetUserFromContext(NancyContext ctx)
         {
             string jwt = string.Empty;
             try
@@ -121,24 +120,19 @@ namespace Cimpress.Nancy.Security
             {
                 _log.Error(new { Message = $"Unable to parse Authorization header: {e}" });
             }
-            UserIdentity user;
-            var userInCache = _userCache.TryGetValue(jwt, out user);
+            var userInCache = _userCache.TryGetValue(jwt, out var user);
             if (!userInCache)
             {
                 user = ValidateUser(jwt);
                 _userCache[jwt] = user;
             }
-            if (user != null && user.Valid && user.ExpirationTime < DateTime.UtcNow)
-            {
-                user.Valid = false;
-            }
 
             return user;
         }
 
-        private UserIdentity ValidateUser(string tokenString)
+        private ClaimsPrincipal ValidateUser(string tokenString)
         {
-            var user = new UserIdentity { Valid = false };
+            var user = new ClaimsPrincipal();
             if (!string.IsNullOrEmpty(tokenString))
             {
                 try
@@ -153,13 +147,7 @@ namespace Cimpress.Nancy.Security
                     }
 
                     var validatedClaims = tokenHandler.ValidateToken(tokenString, validationParameters, out var validatedToken);
-                    var jwtSecurityToken = validatedToken as JwtSecurityToken;
-                    
-                    var auth0User = ParseUser(validatedClaims.Claims);
-                    user.UserName = auth0User.Name;
-                    user.UserId = jwtSecurityToken.Subject;
-                    user.Valid = true;
-                    user.ExpirationTime = jwtSecurityToken.ValidTo.ToUniversalTime();
+                    user = validatedClaims;
                 }
                 catch (SecurityTokenValidationException e)
                 {
@@ -195,24 +183,6 @@ namespace Cimpress.Nancy.Security
                 validationParameters = _jwksKeyValidationParameters;
             }
             return validationParameters;
-        }
-
-        private Auth0User ParseUser(IEnumerable<Claim> claims)
-        {
-            var user = new Auth0User
-            {
-                Name = string.Empty
-            };
-
-            foreach (var claim in claims)
-            {
-                if (claim.Type == Name)
-                {
-                    user.Name = claim.Value;
-                }
-            }
-
-            return user;
         }
     }
 }
