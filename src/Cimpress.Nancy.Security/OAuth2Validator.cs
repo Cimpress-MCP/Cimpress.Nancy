@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Cimpress.Nancy.Security
         private TokenValidationParameters _jwksKeyValidationParameters;
         private readonly INancyLogger _log;
         private const string Bearer = "Bearer ";
-        private readonly IDictionary<string, ClaimsPrincipal> _userCache = new Dictionary<string, ClaimsPrincipal>();
+        private readonly ConcurrentDictionary<string, ClaimsPrincipal> _userCache = new ConcurrentDictionary<string, ClaimsPrincipal>();
 
         private static readonly Regex Base64Regex = new Regex("^(?:[A-Za-z0-9-_]{4})*(?:[A-Za-z0-9-_]{2}==|[A-Za-z0-9-_]{3}=)?$");
 
@@ -120,14 +121,8 @@ namespace Cimpress.Nancy.Security
             {
                 _log.Error(new { Message = $"Unable to parse Authorization header: {e}" });
             }
-            var userInCache = _userCache.TryGetValue(jwt, out var user);
-            if (!userInCache)
-            {
-                user = ValidateUser(jwt);
-                _userCache[jwt] = user;
-            }
 
-            return user;
+            return _userCache.GetOrAdd(jwt, ValidateUser);
         }
 
         private ClaimsPrincipal ValidateUser(string tokenString)
