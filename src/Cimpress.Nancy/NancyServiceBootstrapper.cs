@@ -20,6 +20,10 @@ namespace Cimpress.Nancy
 
         private IComponentManager _componentManager;
 
+        protected string CorsHeaders = "APIKEY,Authorization,Access-Control-Allow-Origin,Content-Type,Accept";
+        protected string CorsMethods = "OPTIONS,POST,GET,DELETE,PUT,PATCH";
+        protected string CorsOrigins = "*";
+
         protected NancyServiceBootstrapper() : base()
         {
         }
@@ -72,10 +76,7 @@ namespace Cimpress.Nancy
             {
                 extender.OnAfterRequest(ctx, logData);
             }
-
-            ctx.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-            ctx.Response.Headers.Add("Access-Control-Allow-Headers", "APIKEY,Authorization,Access-Control-Allow-Origin,Content-Type,Accept");
-            ctx.Response.Headers.Add("Access-Control-Allow-Methods", "OPTIONS,POST,GET,DELETE,PUT");
+            AddCorsHeaders(ctx.Response);
         }
 
         private dynamic OnError(NancyContext ctx, Exception ex)
@@ -101,8 +102,7 @@ namespace Cimpress.Nancy
             logData["StatusCode"] = responseStatus;
 
             var newResponse = new Response { ReasonPhrase = responseReason, StatusCode = responseStatus };
-            newResponse.Headers.Add("Access-Control-Allow-Origin", "*");
-
+            AddCorsHeaders(newResponse);
 
             foreach (var extender in _componentManager.GetBootstrapperExtenders())
             {
@@ -110,6 +110,13 @@ namespace Cimpress.Nancy
             }
 
             return newResponse;
+        }
+
+        private void AddCorsHeaders(Response response)
+        {
+            response.Headers.Add("Access-Control-Allow-Origin", CorsOrigins);
+            response.Headers.Add("Access-Control-Allow-Headers", CorsHeaders);
+            response.Headers.Add("Access-Control-Allow-Methods", CorsMethods);
         }
     }
 }
