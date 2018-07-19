@@ -101,13 +101,14 @@ namespace Cimpress.Nancy.Logging
             var request = context.Request;
 
             var formString = JsonConvert.SerializeObject(request.Form.ToDictionary());
-            request.Body.Position = 0;
+
             string bodyString;
             using (var streamReader = new StreamReader(request.Body))
             {
+                request.Body.Position = 0;
                 bodyString = streamReader.ReadToEnd();
+                request.Body.Position = 0;
             }
-            request.Body.Position = 0;
 
             var isBodyJson = string.Equals(request.Headers.ContentType ?? string.Empty, "application/json", StringComparison.OrdinalIgnoreCase);
 
