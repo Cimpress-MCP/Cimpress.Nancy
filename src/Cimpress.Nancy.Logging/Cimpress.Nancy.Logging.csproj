@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>An additional library to handle logging for Cimpress.Nancy</Description>
     <APPVEYOR_BUILD_NUMBER Condition="'$(APPVEYOR_BUILD_NUMBER)' == ''">1</APPVEYOR_BUILD_NUMBER>
-    <VersionPrefix>1.0.$(APPVEYOR_BUILD_NUMBER)</VersionPrefix>
+    <VersionPrefix>1.1.$(APPVEYOR_BUILD_NUMBER)</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
     <Copyright>Cimpress 2017</Copyright>
     <AssemblyTitle>Cimpress.Nancy.Logging</AssemblyTitle>
