@@ -57,18 +57,11 @@ namespace Cimpress.Nancy.Logging
             {
                 correlationId = (string) context.Items[CorrelationIdString];
             }
-
-            string responseBody;
-            using (var stream = new MemoryStream())
-            {
-                response.Contents(stream);
-                stream.Position = 0;
-                using (var streamReader = new StreamReader(stream))
-                {
-                    responseBody = streamReader.ReadToEnd();
-                }
-            }
-
+            
+            var stream = new MemoryStream();
+            response.Contents(stream);
+            stream.Position = 0;
+            var responseBody = new StreamReader(stream).ReadToEnd();
             var responseIsJson = response.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(responseBody);
             var bodyObject = responseIsJson ? JsonConvert.DeserializeObject(responseBody) : responseBody;
 
@@ -102,11 +95,7 @@ namespace Cimpress.Nancy.Logging
 
             var formString = JsonConvert.SerializeObject(request.Form.ToDictionary());
             request.Body.Position = 0;
-            string bodyString;
-            using (var streamReader = new StreamReader(request.Body))
-            {
-                bodyString = streamReader.ReadToEnd();
-            }
+            var bodyString = new StreamReader(request.Body).ReadToEnd();
             request.Body.Position = 0;
 
             var isBodyJson = string.Equals(request.Headers.ContentType ?? string.Empty, "application/json", StringComparison.OrdinalIgnoreCase);
