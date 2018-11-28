@@ -1,4 +1,4 @@
-# Cimpress.Nancy  [![Build status](https://ci.appveyor.com/project/jnallard/cimpress-nancy/branch/master)](https://ci.appveyor.com/project/jnallard/cimpress-nancy)
+# Cimpress.Nancy  [![Build status](https://ci.appveyor.com/api/projects/status/xixa1rxtgbdq2339/branch/master?svg=true)](https://ci.appveyor.com/project/jnallard/cimpress-nancy/branch/master)
 
 A library to help build NancyFx microservices. Handles things like logging of requests/responses/errors, authentication and authorization, swagger, etc.
 
