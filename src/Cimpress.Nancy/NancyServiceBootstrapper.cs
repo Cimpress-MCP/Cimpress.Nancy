@@ -15,6 +15,7 @@ namespace Cimpress.Nancy
 {
     public abstract class NancyServiceBootstrapper : DefaultNancyBootstrapper
     {
+        public const string LogDataString = "LogData";
         public const string StartTimeString = "StartTime";
         public const string EndTimeString = "EndTime";
 
@@ -59,6 +60,7 @@ namespace Cimpress.Nancy
         private Response OnBeforeRequest(NancyContext ctx)
         {
             IDictionary<string, object> logData = new Dictionary<string, object>();
+            ctx.Items.Add(LogDataString, logData);
             ctx.Items.Add(StartTimeString, DateTime.UtcNow);
             Response result = null;
             foreach (var extender in _componentManager.GetBootstrapperExtenders())
@@ -69,9 +71,14 @@ namespace Cimpress.Nancy
             return result;
         }
 
+        public static IDictionary<string, object> GetLogData(NancyContext ctx)
+        {
+            return ctx.Items.TryGetValue(LogDataString, out var data) ? (IDictionary<string, object>) data : new Dictionary<string, object>();
+        }
+
         private void OnAfterRequest(NancyContext ctx)
         {
-            IDictionary<string, object> logData = new Dictionary<string, object>();
+            var logData = GetLogData(ctx);
             foreach (var extender in _componentManager.GetBootstrapperExtenders())
             {
                 extender.OnAfterRequest(ctx, logData);
@@ -81,7 +88,6 @@ namespace Cimpress.Nancy
 
         private dynamic OnError(NancyContext ctx, Exception ex)
         {
-            var request = ctx.Request;
             var webException = ex as WebException;
             string responseReason;
             HttpStatusCode responseStatus;
@@ -97,7 +103,7 @@ namespace Cimpress.Nancy
                 responseStatus = (HttpStatusCode)response.StatusCode;
             }
 
-            IDictionary<string, object> logData = new Dictionary<string, object>();
+            var logData = GetLogData(ctx);
             logData["ResponseReason"] = responseReason;
             logData["StatusCode"] = responseStatus;
 

@@ -71,10 +71,12 @@ namespace Cimpress.Nancy.Logging
                 bodyObject = responseBody.Substring(0, _loggedBodySizeLimit);
             }
 
-            logData["Host"] = Environment.MachineName;
-            logData["Body"] = bodyObject;
-            logData["StatusCode"] = response.StatusCode;
-            logData["ResponseReason"] = response.ReasonPhrase;
+            logData["Response"] = new Dictionary<string, object>
+            {
+                { "Body", bodyObject },
+                { "StatusCode", response.StatusCode },
+                { "Reason", response.ReasonPhrase },
+            };
 
             _logger.Info(new BaseMessage
             {
@@ -123,19 +125,15 @@ namespace Cimpress.Nancy.Logging
             var query = (IDictionary<string, object>)context.Request.Query;
             var queryLog = query.Select(kv => new KeyValuePair<string, string>(kv.Key, kv.Value.ToString()));
 
-            logData["Host"] = Environment.MachineName;
-            logData["Form"] = JsonConvert.DeserializeObject(formString);
-            logData["Headers"] = request.Headers;
-            logData["Query"] = queryLog;
-            logData["Body"] = isBodyJson ? bodyObject : bodyString;
-            logData["Method"] = request.Method;
-
-            _logger.Debug(new BaseMessage
+            logData["Request"] = new Dictionary<string, object>
             {
-                Message = request.Path,
-                CorrelationId = correlationId,
-                Info = logData
-            });
+                { "Host", Environment.MachineName },
+                { "Form", JsonConvert.DeserializeObject(formString) },
+                { "Headers", request.Headers },
+                { "Query", queryLog },
+                { "Body", isBodyJson ? bodyObject : bodyString },
+                { "Method", request.Method },
+            };
             return null;
         }
 
