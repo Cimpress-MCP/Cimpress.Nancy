@@ -5,10 +5,10 @@
     <APPVEYOR_BUILD_NUMBER Condition="'$(APPVEYOR_BUILD_NUMBER)' == ''">1</APPVEYOR_BUILD_NUMBER>
     <VersionPrefix>1.1.$(APPVEYOR_BUILD_NUMBER)</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
-    <Copyright>Cimpress 2017</Copyright>
+    <Copyright>Cimpress 2019</Copyright>
     <AssemblyTitle>Cimpress.Nancy.Logging</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Authors>cdowney@cimpress.com</Authors>
+    <Authors>joallard@vistaprint.com;jgoodnow@vistaprint.com</Authors>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AssemblyName>Cimpress.Nancy.Logging</AssemblyName>
     <PackageId>Cimpress.Nancy.Logging</PackageId>
