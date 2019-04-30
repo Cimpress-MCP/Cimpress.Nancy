@@ -9,36 +9,20 @@
     <AssemblyTitle>Cimpress.Nancy</AssemblyTitle>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Authors>cdowney@cimpress.com</Authors>
-    <TargetFrameworks>net452;netstandard1.6;netcoreapp1.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AssemblyName>Cimpress.Nancy</AssemblyName>
     <PackageId>Cimpress.Nancy</PackageId>
     <PackageTags>nancy;cimpress;cimpress.nancy;microservice</PackageTags>
     <PackageProjectUrl>https://github.com/Cimpress-MCP/Cimpress.Nancy</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/Cimpress-MCP/Cimpress.Nancy/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
-    <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.0</NetStandardImplicitPackageVersion>
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
-    <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">1.0.4</RuntimeFrameworkVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
+    <PackageReference Include="Nancy" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
-    <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Text.RegularExpressions" />
-    <Reference Include="System.Threading.Tasks" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.6' ">
     <PackageReference Include="System.Net.Requests" Version="4.0.11" />
   </ItemGroup>
 
